@@ -6,7 +6,7 @@ var questions = [
     {
         question: "What color is the sky?",
         answers: ['green', 'red', 'yellow', 'blue'],
-        correct: 'blue'
+        correct: 'blue',
     },
     {
         question: "What sound does a dog make?",
@@ -24,6 +24,7 @@ var questions = [
 var currentQuestion = 0;
 var userAnswer = [];
 var score = 0;
+var visable = true;  
 
 function renderQuestion() 
 {
@@ -37,22 +38,28 @@ function renderQuestion()
         var btn = document.createElement("button")
         btn.textContent = questions[currentQuestion].answers[i];
         btn.addEventListener("click", validateAnswer);
-        quizDiv.appendChild(btn)
+        quizDiv.appendChild(btn);
+        
 
         
         function validateAnswer()
         {
-            if (this.textContent === questions[currentQuestion].correct)
-            {
-                alert ("you got it!")
-                score++
-            }
-            else 
-            {
-                alert ("WRONG!")
-            }
-            currentQuestion++
-            renderQuestion()
+            var message = document.getElementById("message")
+                if (this.textContent === questions[currentQuestion].correct)
+                {
+                    quiz.style = "display:none";
+                    message.textContent = "Correct";
+                    setInterval(function(){message.style = "display:none"; },1000);
+                    score++
+                }
+                else 
+                {
+                    quiz.style = "display:none";
+                    message.textContent = "wrong";
+                    setInterval(function(){message.style = "display:none"; },1000);
+                }
+                currentQuestion++
+                renderQuestion()
         }
     }
 }
