@@ -58,8 +58,10 @@ function renderQuestion()
                     message.textContent = "wrong";
                     setInterval(function(){message.style = "display:none"; },1000);
                 }
+                
                 currentQuestion++
                 renderQuestion()
+                message.style = "display:block"
         }
     }
 }
